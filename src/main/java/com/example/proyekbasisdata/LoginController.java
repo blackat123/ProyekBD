@@ -83,6 +83,7 @@ public class LoginController {
         return false;
     }
 
+    // Handle login button click
     @FXML
     public void onLoginClick(ActionEvent event) {
         // Get the username and password from the text fields
@@ -133,5 +134,15 @@ public class LoginController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // Handle register page click
+    public void onRegisterPageClick(ActionEvent event) throws IOException {
+        // Load the registration page
+        HelloApplication app = HelloApplication.getApplicationInstance();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("signup-page.fxml"));
+        Scene scene = new Scene(loader.load());
+        app.getPrimaryStage().setScene(scene);
+        app.getPrimaryStage().sizeToScene();
     }
 }
