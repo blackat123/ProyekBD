@@ -6,5 +6,7 @@ module com.example.proyekbasisdata {
 
 
     opens com.example.proyekbasisdata to javafx.fxml;
+    opens com.example.proyekbasisdata.centralAdmin to javafx.fxml;
     exports com.example.proyekbasisdata;
+    exports com.example.proyekbasisdata.centralAdmin;
 }

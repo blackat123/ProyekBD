@@ -83,7 +83,7 @@
                   <Font name="Poppins SemiBold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="registerPage_button" layoutX="475.0" layoutY="204.0" mnemonicParsing="false" onAction="#onRegisterPageClick" style="-fx-background-color: transparent;" text="Register Here" textFill="#66371a" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="190.0">
+            <Button layoutX="475.0" layoutY="204.0" mnemonicParsing="false" onAction="#onRegisterPageClick" style="-fx-background-color: transparent;" text="Register Here" textFill="#66371a" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="190.0">
                <font>
                   <Font name="Poppins SemiBold" size="14.0" />
                </font>

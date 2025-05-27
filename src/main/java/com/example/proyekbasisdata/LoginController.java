@@ -109,7 +109,7 @@ public class LoginController {
                     }
                     case "Central Admin" -> {
                         // Load the central admin scene
-                        loader = new FXMLLoader(HelloApplication.class.getResource("signup-page.fxml"));
+                        loader = new FXMLLoader(HelloApplication.class.getResource("centralAdminPage/dashboard.fxml"));
                     }
                 }
                 assert loader != null;
