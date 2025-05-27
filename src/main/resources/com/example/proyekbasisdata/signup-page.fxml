@@ -100,7 +100,7 @@
                   <Insets left="16.0" right="16.0" />
                </padding>
             </TextField>
-            <PasswordField maxWidth="1.7976931348623157E308" prefHeight="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <PasswordField fx:id="password_input" maxWidth="1.7976931348623157E308" prefHeight="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <padding>
                   <Insets left="16.0" right="16.0" />
                </padding>
