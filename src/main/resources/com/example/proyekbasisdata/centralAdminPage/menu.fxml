@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +26,7 @@
                                 <Image url="@../assets/logo.png" />
                             </image>
                         </ImageView>
-                        <Button onAction="#onDashboardPageClick" layoutY="260.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-graphic-text-gap: 16px; -fx-background-color: transparent;" text="Dashboard" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                        <Button layoutY="260.0" mnemonicParsing="false" onAction="#onDashboardPageClick" prefHeight="55.0" style="-fx-graphic-text-gap: 16px; -fx-background-color: transparent;" text="Dashboard" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -50,7 +56,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button onAction="#onPromoPageClick" layoutY="410.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Promos" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                        <Button layoutY="410.0" mnemonicParsing="false" onAction="#onPromoPageClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Promos" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -65,7 +71,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button onAction="#onReportPageClick" layoutY="485.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Report" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                        <Button layoutY="485.0" mnemonicParsing="false" onAction="#onReportPageClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Report" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -80,7 +86,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button onAction="#onLogoutClick" layoutX="124.0" layoutY="604.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Log out" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0">
+                        <Button layoutX="124.0" layoutY="604.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Log out" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -99,6 +105,339 @@
                 </AnchorPane>
             </children>
         </VBox>
-        <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;" />
+        <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;">
+            <children>
+                <ScrollPane hbarPolicy="NEVER" layoutX="295.0" layoutY="279.0" prefHeight="540.0" prefWidth="940.0" style="-fx-background-color: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                    <content>
+                        <GridPane prefWidth="940.0" style="-fx-background-color: #ffecd6;">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <!-- Row 1 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Nasi Goreng" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Mie Ayam" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Ayam Bakar" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- Row 2 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.rowIndex="1">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Soto Ayam" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Gado-gado" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Rendang" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- Row 3 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.rowIndex="2">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Bakso" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Pecel Lele" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Nasi Gudeg" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- Row 4 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.rowIndex="3">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Sate Ayam" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Rawon" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Nasi Padang" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- Row 5 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.rowIndex="4">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Ketoprak" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Tahu Gejrot" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Lontong Sayur" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- Row 6 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.rowIndex="5">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Es Teh Manis" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Es Jeruk" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Kopi Hitam" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- Row 7 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.rowIndex="6">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Jus Alpukat" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Es Cendol" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Wedang Jahe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+
+                                <!-- Row 8 -->
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.rowIndex="7">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Pisang Goreng" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Klepon" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                    <GridPane.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </GridPane.margin>
+                                    <children>
+                                        <Label text="Onde-onde" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                                            <font>
+                                                <Font name="Poppins SemiBold" size="16.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </GridPane>
+                    </content>
+                </ScrollPane>
+                <Label layoutX="86.0" layoutY="55.0" text="Menus" AnchorPane.leftAnchor="70.0">
+                    <font>
+                        <Font name="Poppins SemiBold" size="48.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
     </children>
 </HBox>
