@@ -41,6 +41,7 @@ public class MenuController {
     @FXML
     private GridPane menuGridPane;
 
+    // Initialize for data handling
     private List<Menu> menuList;
     private List<Category> categoryList;
     private int currentCategoryId = -1;

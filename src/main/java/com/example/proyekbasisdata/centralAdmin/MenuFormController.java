@@ -163,7 +163,7 @@ public class MenuFormController {
                         File dest = new File("src/main/resources/com/example/proyekbasisdata/assets/" + imagePath);
                         Files.copy(source.toPath(), dest.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
                     }
-                    showSuccessAlert("Menu berhasil disimpan!");
+                    showSuccessAlert("Menu successfully added!");
                     clearForm();
 
                     // Load the menu page
@@ -218,7 +218,7 @@ public class MenuFormController {
                         File dest = new File("src/main/resources/com/example/proyekbasisdata/assets/" + imagePath);
                         Files.copy(source.toPath(), dest.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
                     }
-                    showSuccessAlert("Menu berhasil diupdate!");
+                    showSuccessAlert("Menu successfully updated!");
                     clearForm();
 
                     // Load the menu page
@@ -246,28 +246,28 @@ public class MenuFormController {
 
     private boolean validateForm() {
         if (menuNameField.getText().trim().isEmpty()) {
-            showErrorAlert("Nama menu tidak boleh kosong!");
+            showErrorAlert("Promo name cannot be empty!");
             return false;
         }
 
         if (descriptionField.getText().trim().isEmpty()) {
-            showErrorAlert("Deskripsi menu tidak boleh kosong!");
+            showErrorAlert("Description cannot be empty!");
             return false;
         }
 
         if (priceField.getText().trim().isEmpty()) {
-            showErrorAlert("Harga menu tidak boleh kosong!");
+            showErrorAlert("Price cannot be empty!");
             return false;
         }
 
         try {
             double price = Double.parseDouble(priceField.getText().trim());
             if (price <= 0) {
-                showErrorAlert("Harga menu harus lebih dari 0!");
+                showErrorAlert("Price must be greater than 0!");
                 return false;
             }
         } catch (NumberFormatException e) {
-            showErrorAlert("Harga menu harus berupa angka!");
+            showErrorAlert("Price must be a valid number!");
             return false;
         }
 
@@ -305,6 +305,16 @@ public class MenuFormController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    // Handle cancel button click
+    @FXML
+    public void onCancelClick(ActionEvent event) throws IOException {
+        HelloApplication app = HelloApplication.getApplicationInstance();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("centralAdminPage/menu.fxml"));
+        Scene scene = new Scene(loader.load());
+        app.getPrimaryStage().setScene(scene);
+        app.getPrimaryStage().sizeToScene();
     }
 
     // Handle the navigation to different pages

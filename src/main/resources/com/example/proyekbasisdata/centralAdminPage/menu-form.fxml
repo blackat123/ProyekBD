@@ -214,8 +214,16 @@
                             </VBox>
 
                                   <!-- Save Button -->
-                            <HBox alignment="CENTER_RIGHT">
+                            <HBox alignment="CENTER_RIGHT" spacing="20.0">
                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#onCancelClick" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ff6d6d; -fx-background-radius: 8px;" text="Cancel" textFill="WHITE">
+                                        <font>
+                                            <Font name="Poppins SemiBold" size="18.0" />
+                                        </font>
+                                        <cursor>
+                                            <Cursor fx:constant="HAND" />
+                                        </cursor>
+                                    </Button>
                                     <Button fx:id="saveButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSaveMenuClick" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #d7944c; -fx-background-radius: 12px; -fx-text-fill: #ffffff;" text="Save Menu">
                                         <font>
                                             <Font name="Poppins SemiBold" size="18.0" />

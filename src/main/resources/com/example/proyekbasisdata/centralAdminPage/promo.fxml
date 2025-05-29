@@ -112,95 +112,21 @@
                         <Font name="Poppins SemiBold" size="48.0" />
                     </font>
                 </Label>
-            <Button layoutX="788.0" layoutY="61.0" mnemonicParsing="false" style="-fx-background-color: #84d7d9;" text="Add Promo" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="75.0">
-               <font>
-                  <Font name="Poppins Medium" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-                <ScrollPane hbarPolicy="NEVER" layoutX="73.0" layoutY="184.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
+                <Button layoutX="788.0" layoutY="61.0" mnemonicParsing="false" onAction="#onAddPromoClick" style="-fx-background-color: #84d7d9;" text="Add Promo" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="75.0">
+                    <font>
+                        <Font name="Poppins Medium" size="16.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="73.0" layoutY="184.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
                     <content>
-                        <GridPane prefHeight="210.0" prefWidth="450.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;">
-                                    <GridPane.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </GridPane.margin>
-                                    <children>
-                                        <Button maxHeight="30.0" maxWidth="23.0" minHeight="30.0" minWidth="32.0" mnemonicParsing="false" style="-fx-background-color: #66ce7d;" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="55.0">
-                                            <graphic>
-                                                <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../assets/edit-icon.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Button>
-                                        <Button maxHeight="30.0" maxWidth="32.0" minHeight="30.0" minWidth="32.0" mnemonicParsing="false" style="-fx-background-color: #ff6d6d;" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="15.0">
-                                            <graphic>
-                                                <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../assets/delete-icon.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Button>
-                                        <Label layoutX="52.0" layoutY="37.0" text="HUT Cattera" wrapText="true" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="27.0">
-                                            <font>
-                                                <Font name="Poppins SemiBold" size="24.0" />
-                                            </font>
-                                        </Label>
-                                        <Label alignment="TOP_LEFT" layoutX="51.0" layoutY="71.0" prefHeight="65.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrapText="true" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="65.0">
-                                            <font>
-                                                <Font name="Poppins Regular" size="12.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="234.0" layoutY="133.0" text="Start Date :" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="162.0">
-                                            <font>
-                                                <Font name="Poppins Medium" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label alignment="CENTER" layoutX="235.0" layoutY="156.0" text="End Date :" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="162.0">
-                                            <font>
-                                                <Font name="Poppins Medium" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label alignment="CENTER" layoutX="56.0" layoutY="92.0" style="-fx-text-fill: #a16e34;" text="20%" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.8" AnchorPane.topAnchor="0.0">
-                                            <font>
-                                                <Font name="Poppins Black" size="50.0" />
-                                            </font>
-                                        </Label>
-                                        <Label prefWidth="2.0" style="-fx-border-color: #d7944c; -fx-border-style: segments(7,12) line-cap round; -fx-border-width: 0 3 0 0;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="2.0" />
-                                        <Label layoutX="270.0" layoutY="134.0" text="04/05/2025" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="249.0">
-                                            <font>
-                                                <Font name="Poppins Medium" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="270.0" layoutY="155.0" text="29/05/2025" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="242.0">
-                                            <font>
-                                                <Font name="Poppins Medium" size="14.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </AnchorPane>
-                            </children>
+                        <GridPane fx:id="promoGridPane" prefWidth="900.0">
                         </GridPane>
                     </content>
                 </ScrollPane>
-            </children></AnchorPane>
+            </children>
+        </AnchorPane>
     </children>
 </HBox>
