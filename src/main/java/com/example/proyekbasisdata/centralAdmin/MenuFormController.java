@@ -46,8 +46,8 @@ public class MenuFormController {
     @FXML
     private Label titleLabel;
 
+    // Initialize variables for data handling
     private String selectedImagePath = "";
-    private String mode = "";
     private int categoryId;
     private Menu menuToEdit;
 
@@ -67,7 +67,6 @@ public class MenuFormController {
     }
 
     public void setMode(String mode, int categoryId, Menu menu) {
-        this.mode = mode;
         this.categoryId = categoryId;
         this.menuToEdit = menu;
 
@@ -146,11 +145,10 @@ public class MenuFormController {
             String description = descriptionField.getText().trim();
             String priceText = priceField.getText().trim();
 
-            try {
+            try (Connection connection = DataSourceManager.getDatabaseConnection()) {
                 double price = Double.parseDouble(priceText);
 
                 // Send to database
-                Connection connection = DataSourceManager.getDatabaseConnection();
                 PreparedStatement stmt = connection.prepareStatement("INSERT INTO menus (image, name, description, price, category_id) VALUES (?, ?, ?, ?, ?)");
                 stmt.setString(1, imagePath);
                 stmt.setString(2, menuName);
@@ -168,7 +166,7 @@ public class MenuFormController {
                     showSuccessAlert("Menu berhasil disimpan!");
                     clearForm();
 
-                    // Load the login page
+                    // Load the menu page
                     HelloApplication app = HelloApplication.getApplicationInstance();
                     FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("centralAdminPage/menu.fxml"));
                     Scene scene = new Scene(loader.load());
@@ -201,11 +199,10 @@ public class MenuFormController {
             String description = descriptionField.getText().trim();
             String priceText = priceField.getText().trim();
 
-            try {
+            try (Connection connection = DataSourceManager.getDatabaseConnection()) {
                 double price = Double.parseDouble(priceText);
 
                 // Send to database
-                Connection connection = DataSourceManager.getDatabaseConnection();
                 PreparedStatement stmt = connection.prepareStatement("UPDATE menus SET image = ?, name = ?, description = ?, price = ?, category_id = ? WHERE id = ?");
                 stmt.setString(1, imagePath);
                 stmt.setString(2, menuName);
@@ -224,7 +221,7 @@ public class MenuFormController {
                     showSuccessAlert("Menu berhasil diupdate!");
                     clearForm();
 
-                    // Load the login page
+                    // Load the menu page
                     HelloApplication app = HelloApplication.getApplicationInstance();
                     FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("centralAdminPage/menu.fxml"));
                     Scene scene = new Scene(loader.load());

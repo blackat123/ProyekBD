@@ -57,8 +57,7 @@ public class SignupController {
         }
 
         // Send data to database
-        try {
-            Connection connection = DataSourceManager.getDatabaseConnection();
+        try (Connection connection = DataSourceManager.getDatabaseConnection()) {
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO customers (name, email, password, phone_number, address, created_at) VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setString(1, name);
             stmt.setString(2, email);

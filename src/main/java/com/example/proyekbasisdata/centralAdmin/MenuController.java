@@ -67,8 +67,7 @@ public class MenuController {
     // Load categories from the database
     private void loadCategories() {
         categoryList = new ArrayList<>();
-        try {
-            Connection connection = DataSourceManager.getDatabaseConnection();
+        try (Connection connection = DataSourceManager.getDatabaseConnection()) {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM categories ORDER BY id");
             ResultSet rs = stmt.executeQuery();
 
@@ -86,8 +85,7 @@ public class MenuController {
     // Load menus based on the selected category
     private void loadMenus() {
         menuList = new ArrayList<>();
-        try {
-            Connection connection = DataSourceManager.getDatabaseConnection();
+        try (Connection connection = DataSourceManager.getDatabaseConnection()) {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM menus WHERE category_id = ? ORDER BY id");
             stmt.setInt(1, currentCategoryId);
             ResultSet rs = stmt.executeQuery();
@@ -364,17 +362,19 @@ public class MenuController {
 
     // Handle add category button click
     @FXML
-    private void onAddCategoryClick() {
-        // Implement add category dialog/form
-        // This could open a new dialog or form to add a new category
-        System.out.println("Add Category clicked");
-        // After adding, refresh the display
-        // loadData();
+    private void onAddCategoryClick() throws IOException {
+        HelloApplication app = HelloApplication.getApplicationInstance();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("centralAdminPage/category-form.fxml"));
+        Scene scene = new Scene(loader.load());
+        CategoryFormController controller = loader.getController();
+        controller.setMode("ADD", null);
+        app.getPrimaryStage().setScene(scene);
+        app.getPrimaryStage().sizeToScene();
     }
 
     // Handle edit category button click
     @FXML
-    private void onEditCategoryClick() {
+    private void onEditCategoryClick() throws IOException {
         if (currentCategoryId == -1) {
             showWarningAlert("No Category Selected", "Please select a category to edit.");
             return;
@@ -388,9 +388,13 @@ public class MenuController {
 
         if (currentCategory != null) {
             System.out.println("Edit Category: " + currentCategory.getName());
-            // Implement edit category dialog/form
-            // After editing, refresh the display
-            // loadData();
+            HelloApplication app = HelloApplication.getApplicationInstance();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("centralAdminPage/category-form.fxml"));
+            Scene scene = new Scene(loader.load());
+            CategoryFormController controller = loader.getController();
+            controller.setMode("EDIT", currentCategory);
+            app.getPrimaryStage().setScene(scene);
+            app.getPrimaryStage().sizeToScene();
         }
     }
 
@@ -423,10 +427,8 @@ public class MenuController {
 
     // Delete category from the database
     private void deleteCategory(int categoryId) {
-        try (Connection connection = DataSourceManager.getDatabaseConnection();
-             PreparedStatement stmt = connection.prepareStatement("DELETE FROM categories WHERE id = ?"
-             )) {
-
+        try (Connection connection = DataSourceManager.getDatabaseConnection()) {
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM categories WHERE id = ?");
             stmt.setInt(1, categoryId);
             int rowsAffected = stmt.executeUpdate();
 
@@ -495,9 +497,8 @@ public class MenuController {
     }
 
     private void deleteMenu(int menuId) {
-        try (Connection connection = DataSourceManager.getDatabaseConnection();
-             PreparedStatement stmt = connection.prepareStatement("DELETE FROM menus WHERE id = ?")) {
-
+        try (Connection connection = DataSourceManager.getDatabaseConnection()) {
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM menus WHERE id = ?");
             stmt.setInt(1, menuId);
             int rowsAffected = stmt.executeUpdate();
 

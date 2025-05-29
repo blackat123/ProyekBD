@@ -138,12 +138,12 @@
                                                 <children>
                                                     <TextField fx:id="imagePathField" prefHeight="40.0" prefWidth="400.0" promptText="Image path or URL" style="-fx-background-color: #ffffff; -fx-background-radius: 8px; -fx-border-color: #d7944c; -fx-border-radius: 8px; -fx-border-width: 1px; -fx-padding: 10px;">
                                                         <font>
-                                                            <Font name="Poppins Regular" size="14.0" />
+                                                            <Font name="Arial" size="14.0" />
                                                         </font>
                                                     </TextField>
                                                     <Button fx:id="browseImageButton" mnemonicParsing="false" onAction="#onBrowseImageClick" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #d7944c; -fx-background-radius: 8px; -fx-text-fill: #ffffff;" text="Browse Image">
                                                         <font>
-                                                            <Font name="Poppins Regular" size="12.0" />
+                                                            <Font name="Poppins Medium" size="13.0" />
                                                         </font>
                                                         <cursor>
                                                             <Cursor fx:constant="HAND" />
@@ -166,7 +166,7 @@
                                     </Label>
                                     <TextField fx:id="menuNameField" prefHeight="45.0" promptText="Enter menu name" style="-fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-border-color: #d7944c; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 12px;">
                                         <font>
-                                            <Font name="Poppins Regular" size="16.0" />
+                                            <Font name="Arial" size="16.0" />
                                         </font>
                                     </TextField>
                                 </children>
@@ -182,7 +182,7 @@
                                     </Label>
                                     <TextArea fx:id="descriptionField" prefHeight="150.0" promptText="Enter menu description" style="-fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-border-color: #d7944c; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 12px;" wrapText="true">
                                         <font>
-                                            <Font name="Poppins Regular" size="16.0" />
+                                            <Font name="Arial" size="16.0" />
                                         </font>
                                     </TextArea>
                                 </children>
@@ -205,7 +205,7 @@
                                             </Label>
                                             <TextField fx:id="priceField" prefHeight="45.0" prefWidth="200.0" promptText="0" style="-fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-border-color: #d7944c; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 12px;">
                                                 <font>
-                                                    <Font name="Poppins Regular" size="16.0" />
+                                                    <Font name="Arial" size="16.0" />
                                                 </font>
                                             </TextField>
                                         </children>
