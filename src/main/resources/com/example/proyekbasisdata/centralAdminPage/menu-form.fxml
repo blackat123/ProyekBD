@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyekbasisdata.centralAdmin.MenuFormController">
+    <children>
+        <VBox prefWidth="300.0">
+            <children>
+                <AnchorPane prefHeight="720.0" prefWidth="300.0" style="-fx-background-color: #e5b17a;">
+                    <children>
+                        <ImageView fitHeight="189.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="40.0">
+                            <image>
+                                <Image url="@../assets/logo.png" />
+                            </image>
+                        </ImageView>
+                        <Button layoutY="260.0" mnemonicParsing="false" onAction="#onDashboardPageClick" prefHeight="55.0" style="-fx-graphic-text-gap: 16px; -fx-background-color: transparent;" text="Dashboard" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                            <font>
+                                <Font name="Poppins Regular" size="24.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../assets/dashboard-icon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutY="335.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-background-color: #d7944c; -fx-background-radius: 20px; -fx-graphic-text-gap: 16px;" text="Menus" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                            <font>
+                                <Font name="Poppins Regular" size="24.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../assets/menu-icon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutY="410.0" mnemonicParsing="false" onAction="#onPromoPageClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Promos" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                            <font>
+                                <Font name="Poppins Regular" size="24.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../assets/promo-icon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutY="485.0" mnemonicParsing="false" onAction="#onReportPageClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Report" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                            <font>
+                                <Font name="Poppins Regular" size="24.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../assets/report-icon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button layoutX="124.0" layoutY="604.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Log out" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0">
+                            <font>
+                                <Font name="Poppins Regular" size="24.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../assets/logout.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;">
+            <children>
+                <Label fx:id="titleLabel" layoutX="86.0" layoutY="55.0" text="Add Menu" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="55.0">
+                    <font>
+                        <Font name="Poppins SemiBold" size="48.0" />
+                    </font>
+                </Label>
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="73.0" layoutY="191.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
+                    <VBox layoutX="40.0" layoutY="140.0" prefWidth="900.0" spacing="25.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="140.0">
+                        <children>
+                            <!-- Image Section -->
+                            <VBox spacing="10.0">
+                                <children>
+                                    <Label text="Image">
+                                        <font>
+                                            <Font name="Poppins SemiBold" size="18.0" />
+                                        </font>
+                                    </Label>
+                                    <HBox spacing="15.0">
+                                        <children>
+                                            <!-- Image Preview -->
+                                            <AnchorPane prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-border-color: #d7944c; -fx-border-radius: 10px; -fx-border-width: 2px;">
+                                                <children>
+                                                    <ImageView fx:id="imagePreview" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                        <image>
+                                                            <Image url="@../assets/placeholder-image.png" />
+                                                        </image>
+                                                    </ImageView>
+                                                </children>
+                                            </AnchorPane>
+                                            <!-- Image Path Input and Browse Button -->
+                                            <VBox spacing="8.0">
+                                                <children>
+                                                    <TextField fx:id="imagePathField" prefHeight="40.0" prefWidth="400.0" promptText="Image path or URL" style="-fx-background-color: #ffffff; -fx-background-radius: 8px; -fx-border-color: #d7944c; -fx-border-radius: 8px; -fx-border-width: 1px; -fx-padding: 10px;">
+                                                        <font>
+                                                            <Font name="Poppins Regular" size="14.0" />
+                                                        </font>
+                                                    </TextField>
+                                                    <Button fx:id="browseImageButton" mnemonicParsing="false" onAction="#onBrowseImageClick" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #d7944c; -fx-background-radius: 8px; -fx-text-fill: #ffffff;" text="Browse Image">
+                                                        <font>
+                                                            <Font name="Poppins Regular" size="12.0" />
+                                                        </font>
+                                                        <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                        </cursor>
+                                                    </Button>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </VBox>
+
+                            <!-- Menu Name -->
+                            <VBox spacing="10.0">
+                                <children>
+                                    <Label text="Name">
+                                        <font>
+                                            <Font name="Poppins SemiBold" size="18.0" />
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="menuNameField" prefHeight="45.0" promptText="Enter menu name" style="-fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-border-color: #d7944c; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 12px;">
+                                        <font>
+                                            <Font name="Poppins Regular" size="16.0" />
+                                        </font>
+                                    </TextField>
+                                </children>
+                            </VBox>
+
+                            <!-- Description -->
+                            <VBox spacing="10.0">
+                                <children>
+                                    <Label text="Description">
+                                        <font>
+                                            <Font name="Poppins SemiBold" size="18.0" />
+                                        </font>
+                                    </Label>
+                                    <TextArea fx:id="descriptionField" prefHeight="150.0" promptText="Enter menu description" style="-fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-border-color: #d7944c; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 12px;" wrapText="true">
+                                        <font>
+                                            <Font name="Poppins Regular" size="16.0" />
+                                        </font>
+                                    </TextArea>
+                                </children>
+                            </VBox>
+
+                            <!-- Price -->
+                            <VBox spacing="10.0">
+                                <children>
+                                    <Label text="Price">
+                                        <font>
+                                            <Font name="Poppins SemiBold" size="18.0" />
+                                        </font>
+                                    </Label>
+                                    <HBox spacing="10.0">
+                                        <children>
+                                            <Label style="-fx-text-fill: #8b4513;" text="Rp">
+                                                <font>
+                                                    <Font name="Poppins SemiBold" size="18.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="priceField" prefHeight="45.0" prefWidth="200.0" promptText="0" style="-fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-border-color: #d7944c; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 12px;">
+                                                <font>
+                                                    <Font name="Poppins Regular" size="16.0" />
+                                                </font>
+                                            </TextField>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </VBox>
+
+                                  <!-- Save Button -->
+                            <HBox alignment="CENTER_RIGHT">
+                                <children>
+                                    <Button fx:id="saveButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSaveMenuClick" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #d7944c; -fx-background-radius: 12px; -fx-text-fill: #ffffff;" text="Save Menu">
+                                        <font>
+                                            <Font name="Poppins SemiBold" size="18.0" />
+                                        </font>
+                                        <cursor>
+                                            <Cursor fx:constant="HAND" />
+                                        </cursor>
+                                    </Button>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </ScrollPane>
+            </children></AnchorPane>
+    </children>
+</HBox>

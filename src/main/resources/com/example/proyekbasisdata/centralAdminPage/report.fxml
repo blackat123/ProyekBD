@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +28,7 @@
                                 <Image url="@../assets/logo.png" />
                             </image>
                         </ImageView>
-                        <Button onAction="#onDashboardPageClick" layoutY="260.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-graphic-text-gap: 16px; -fx-background-color: transparent;" text="Dashboard" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                        <Button layoutY="260.0" mnemonicParsing="false" onAction="#onDashboardPageClick" prefHeight="55.0" style="-fx-graphic-text-gap: 16px; -fx-background-color: transparent;" text="Dashboard" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -35,7 +43,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button onAction="#onMenuPageClick" layoutY="335.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Menus" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                        <Button layoutY="335.0" mnemonicParsing="false" onAction="#onMenuPageClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Menus" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -50,7 +58,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button onAction="#onPromoPageClick" layoutY="410.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Promos" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                        <Button layoutY="410.0" mnemonicParsing="false" onAction="#onPromoPageClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Promos" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -80,7 +88,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button onAction="#onLogoutClick" layoutX="124.0" layoutY="604.0" mnemonicParsing="false" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Log out" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0">
+                        <Button layoutX="124.0" layoutY="604.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="55.0" style="-fx-background-color: transparent; -fx-graphic-text-gap: 16px;" text="Log out" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0">
                             <font>
                                 <Font name="Poppins Regular" size="24.0" />
                             </font>
@@ -99,6 +107,55 @@
                 </AnchorPane>
             </children>
         </VBox>
-        <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;" />
+        <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="500.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <content>
+                  <TableView prefHeight="500.0" prefWidth="900.0">
+                    <columns>
+                      <TableColumn prefWidth="70.0" text="ID" />
+                      <TableColumn prefWidth="178.0" text="Order Date" />
+                        <TableColumn prefWidth="142.0" text="Total Price" />
+                        <TableColumn prefWidth="219.0" text="Customer Review" />
+                        <TableColumn minWidth="8.0" prefWidth="145.0" text="Customer ID" />
+                        <TableColumn minWidth="4.79998779296875" prefWidth="145.0" text="Branch ID" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
+               <content>
+                  <GridPane prefHeight="40.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button alignment="CENTER" maxHeight="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #c29156; -fx-background-radius: 8px;" text="Cabang A" textAlignment="CENTER" textFill="WHITE">
+                           <GridPane.margin>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="Poppins SemiBold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <Label layoutX="93.0" layoutY="72.0" text="Report" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="55.0">
+               <font>
+                  <Font name="Poppins SemiBold" size="48.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
     </children>
 </HBox>

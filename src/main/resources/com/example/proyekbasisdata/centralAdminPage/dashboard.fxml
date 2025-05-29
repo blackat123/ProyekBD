@@ -106,7 +106,7 @@
       </VBox>
       <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;">
          <children>
-            <GridPane layoutX="390.0" layoutY="315.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="150.0">
+            <GridPane layoutX="390.0" layoutY="315.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="10.0" prefWidth="20.0" />
@@ -208,7 +208,7 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <Label layoutX="75.0" layoutY="55.0" text="Dashboard" AnchorPane.leftAnchor="70.0">
+            <Label layoutX="75.0" layoutY="55.0" text="Dashboard" AnchorPane.leftAnchor="40.0">
                <font>
                   <Font name="Poppins SemiBold" size="48.0" />
                </font>

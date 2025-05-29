@@ -112,14 +112,14 @@
                         <Font name="Poppins SemiBold" size="48.0" />
                     </font>
                 </Label>
-            <Button layoutX="788.0" layoutY="61.0" mnemonicParsing="false" style="-fx-background-color: #84d7d9;" text="Add Promo" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="75.0">
-               <font>
-                  <Font name="Poppins Medium" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+                <Button layoutX="788.0" layoutY="61.0" mnemonicParsing="false" style="-fx-background-color: #84d7d9;" text="Add Promo" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="75.0">
+                    <font>
+                        <Font name="Poppins Medium" size="16.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
                 <ScrollPane hbarPolicy="NEVER" layoutX="73.0" layoutY="184.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
                     <content>
                         <GridPane prefHeight="210.0" prefWidth="450.0">
@@ -130,7 +130,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;">
+                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4d7a7; -fx-background-radius: 15px;">
                                     <GridPane.margin>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </GridPane.margin>
