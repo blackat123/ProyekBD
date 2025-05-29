@@ -497,12 +497,27 @@ public class MenuController {
     }
 
     private void deleteMenu(int menuId) {
+        String imageName = null;
         try (Connection connection = DataSourceManager.getDatabaseConnection()) {
             PreparedStatement stmt = connection.prepareStatement("DELETE FROM menus WHERE id = ?");
+            PreparedStatement selectStmt = connection.prepareStatement("SELECT image FROM menus WHERE id = ?");
             stmt.setInt(1, menuId);
+            selectStmt.setInt(1, menuId);
+            ResultSet rs = selectStmt.executeQuery();
+            if (rs.next()) {
+                imageName = rs.getString("image");
+            }
             int rowsAffected = stmt.executeUpdate();
 
             if (rowsAffected > 0) {
+                if (imageName != null && !imageName.isEmpty() && !imageName.equals("placeholder-image.png")) {
+                    File imageFile = new File("src/main/resources/com/example/proyekbasisdata/assets/" + imageName);
+                    if (imageFile.exists()) {
+                        if (!imageFile.delete()) {
+                            System.out.println("Failed to delete image file: " + imageFile.getAbsolutePath());
+                        }
+                    }
+                }
                 showInfoAlert("Success", "Menu deleted successfully.");
                 loadMenus(); // Refresh the menus
                 displayMenus();
