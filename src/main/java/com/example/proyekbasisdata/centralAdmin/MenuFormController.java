@@ -76,7 +76,7 @@ public class MenuFormController {
             if (menuToEdit != null) {
                 menuNameField.setText(menuToEdit.getName());
                 descriptionField.setText(menuToEdit.getDescription());
-                priceField.setText(String.valueOf(menuToEdit.getPrice()));
+                priceField.setText(String.format("%.0f", menuToEdit.getPrice()));
 
                 if (menuToEdit.getImage() != null && !menuToEdit.getImage().isEmpty()) {
                     imagePathField.setText(menuToEdit.getImage());

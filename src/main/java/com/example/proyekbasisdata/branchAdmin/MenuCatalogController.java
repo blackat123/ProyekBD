@@ -410,7 +410,7 @@ public class MenuCatalogController {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/branch-menu-form.fxml"));
             Scene scene = new Scene(loader.load());
             BranchMenu controller = loader.getController();
-            controller.getImage(branchMenu, centralMenu);
+//            controller.getImage(branchMenu, centralMenu);
             app.getPrimaryStage().setScene(scene);
             app.getPrimaryStage().sizeToScene();
         } catch (IOException e) {

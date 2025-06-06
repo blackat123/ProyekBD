@@ -229,6 +229,9 @@ public class MenuController {
                 File file = new File("src/main/resources/com/example/proyekbasisdata/assets/" + menu.getImage());
                 if (file.exists()) {
                     imageView.setImage(new Image(file.toURI().toString()));
+                } else {
+                    Image placeholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/proyekbasisdata/assets/placeholder-image.png")));
+                    imageView.setImage(placeholder);
                 }
             } else {
                 Image placeholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/proyekbasisdata/assets/placeholder-image.png")));

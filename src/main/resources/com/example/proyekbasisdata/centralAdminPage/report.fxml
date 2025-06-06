@@ -109,7 +109,7 @@
         </VBox>
         <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="500.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
                <content>
                   <TableView prefHeight="500.0" prefWidth="900.0">
                     <columns>
