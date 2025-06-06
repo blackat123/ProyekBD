@@ -56,7 +56,7 @@ public class MenuController {
     private void loadData() {
         loadCategories();
         if (!categoryList.isEmpty()) {
-            currentCategoryId = categoryList.get(0).getId();
+            currentCategoryId = categoryList.getFirst().getId();
             loadMenus();
             displayCategories();
             displayMenus();

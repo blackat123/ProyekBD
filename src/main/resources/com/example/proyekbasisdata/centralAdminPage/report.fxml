@@ -108,54 +108,31 @@
             </children>
         </VBox>
         <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;">
-         <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
-               <content>
-                  <TableView prefHeight="500.0" prefWidth="900.0">
-                    <columns>
-                      <TableColumn prefWidth="70.0" text="ID" />
-                      <TableColumn prefWidth="178.0" text="Order Date" />
-                        <TableColumn prefWidth="142.0" text="Total Price" />
-                        <TableColumn prefWidth="219.0" text="Customer Review" />
-                        <TableColumn minWidth="8.0" prefWidth="145.0" text="Customer ID" />
-                        <TableColumn minWidth="4.79998779296875" prefWidth="145.0" text="Branch ID" />
-                    </columns>
-                  </TableView>
-               </content>
-            </ScrollPane>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
-               <content>
-                  <GridPane prefHeight="40.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Button alignment="CENTER" maxHeight="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #c29156; -fx-background-radius: 8px;" text="Cabang A" textAlignment="CENTER" textFill="WHITE">
-                           <GridPane.margin>
-                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font name="Poppins SemiBold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-            <Label layoutX="93.0" layoutY="72.0" text="Report" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="55.0">
-               <font>
-                  <Font name="Poppins SemiBold" size="48.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
+            <children>
+                <Label layoutX="93.0" layoutY="72.0" text="Report" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="55.0">
+                    <font>
+                        <Font name="Poppins SemiBold" size="48.0" />
+                    </font>
+                </Label>
+                <ScrollPane hbarPolicy="NEVER" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
+                    <content>
+                        <GridPane fx:id="branchGridPane" prefHeight="40.0">
+                        </GridPane>
+                    </content>
+                </ScrollPane>
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+                    <content>
+                        <TableView fx:id="reportTableView" prefHeight="500.0" prefWidth="900.0">
+                            <columns>
+                                <TableColumn fx:id="idColumn" prefWidth="70.0" text="ID" />
+                                <TableColumn fx:id="orderDateColumn" prefWidth="185.0" text="Order Date" />
+                                <TableColumn fx:id="totalPriceColumn" prefWidth="200.0" text="Total Price" />
+                                <TableColumn fx:id="customerReviewColumn" prefWidth="310.0" text="Customer Review" />
+                                <TableColumn fx:id="customerIdColumn" minWidth="8.0" prefWidth="130.5" text="Customer ID" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+            </children></AnchorPane>
     </children>
 </HBox>
