@@ -391,7 +391,7 @@ public class MenuCatalogController {
             stmt.setInt(1, branchId);
             stmt.setInt(2, menu.getId());
             stmt.setBoolean(3, true);
-            stmt.setDouble(4, 0.0); // No custom price initially
+            stmt.setDouble(4, 0.0); 
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -409,8 +409,8 @@ public class MenuCatalogController {
             HelloApplication app = HelloApplication.getApplicationInstance();
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/branch-menu-form.fxml"));
             Scene scene = new Scene(loader.load());
-            BranchMenu controller = loader.getController();
-//            controller.getImage(branchMenu, centralMenu);
+            BranchMenuFormController controller = loader.getController();
+            controller.initData(branchMenu, centralMenu);
             app.getPrimaryStage().setScene(scene);
             app.getPrimaryStage().sizeToScene();
         } catch (IOException e) {
