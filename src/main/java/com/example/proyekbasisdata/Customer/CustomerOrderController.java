@@ -9,6 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerOrderController {
 
@@ -30,119 +32,128 @@ public class CustomerOrderController {
     @FXML
     private TableColumn<MenuItem, Void> colAction;
 
-    @FXML
-    private Button checkoutButton;
-
-    private ObservableList<MenuItem> menuList = FXCollections.observableArrayList();
+    private final ObservableList<MenuItem> menuList = FXCollections.observableArrayList();
+    private final Map<String, Integer> branchMap = new HashMap<>();
 
     @FXML
     public void initialize() {
-        setupTableColumns();
+        setupTable();
         loadBranches();
-
-        branchComboBox.setOnAction(e -> {
-            String branch = branchComboBox.getSelectionModel().getSelectedItem();
-            if (branch != null) loadMenusByBranch(branch);
-        });
     }
 
-    private void setupTableColumns() {
+    private void setupTable() {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        colAction.setCellFactory(getActionCellFactory());
+
+        colAction.setCellFactory(new Callback<TableColumn<MenuItem, Void>, TableCell<MenuItem, Void>>() {
+            @Override
+            public TableCell<MenuItem, Void> call(final TableColumn<MenuItem, Void> param) {
+                return new TableCell<>() {
+                    private final Button btn = new Button("+");
+
+                    {
+                        btn.setOnAction(event -> {
+                            MenuItem item = getTableView().getItems().get(getIndex());
+                            showAlert("Tambah Pesanan", "Menu ditambahkan: " + item.getName());
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setGraphic(empty ? null : btn);
+                    }
+                };
+            }
+        });
+
         menuTableView.setItems(menuList);
     }
 
-    private Callback<TableColumn<MenuItem, Void>, TableCell<MenuItem, Void>> getActionCellFactory() {
-        return col -> new TableCell<>() {
-            private final Button addButton = new Button("+");
-            private final Button minusButton = new Button("-");
-            private final HBox hBox = new HBox(5, addButton, minusButton);
-
-            {
-                addButton.setOnAction(e -> {
-                    MenuItem item = getTableView().getItems().get(getIndex());
-                    item.setQuantity(item.getQuantity() + 1);
-                    menuTableView.refresh();
-                });
-                minusButton.setOnAction(e -> {
-                    MenuItem item = getTableView().getItems().get(getIndex());
-                    if (item.getQuantity() > 0) {
-                        item.setQuantity(item.getQuantity() - 1);
-                        menuTableView.refresh();
-                    }
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : hBox);
-            }
-        };
+    @FXML
+    private void onBranchSelected() {
+        String selectedBranch = branchComboBox.getValue();
+        if (selectedBranch == null || !branchMap.containsKey(selectedBranch)) {
+            return;
+        }
+        int branchId = branchMap.get(selectedBranch);
+        loadMenusByBranch(branchId);
     }
 
     private void loadBranches() {
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT name FROM branches");
+             PreparedStatement stmt = conn.prepareStatement("SELECT id, name FROM branches");
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                branchComboBox.getItems().add(rs.getString("name"));
+                String name = rs.getString("name");
+                int id = rs.getInt("id");
+                branchComboBox.getItems().add(name);
+                branchMap.put(name, id);
             }
         } catch (SQLException e) {
-            showAlert("Error loading branches", e.getMessage());
+            showAlert("Error", "Gagal memuat cabang: " + e.getMessage());
         }
     }
 
-    private void loadMenusByBranch(String branchName) {
+    private void loadMenusByBranch(int branchId) {
         menuList.clear();
-        String sql = "SELECT m.name, m.description, m.price FROM catalogs c JOIN menus m ON c.menu_id = m.id JOIN branches b ON c.branch_id = b.id WHERE b.name = ?";
+        String query = "SELECT m.name, m.description, m.price FROM catalogs c " +
+                "JOIN menus m ON c.menu_id = m.id WHERE c.branch_id = ?";
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, branchName);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, branchId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 menuList.add(new MenuItem(
                         rs.getString("name"),
                         rs.getString("description"),
-                        rs.getDouble("price"),
-                        0
+                        rs.getDouble("price")
                 ));
             }
         } catch (SQLException e) {
-            showAlert("Error loading menu", e.getMessage());
+            showAlert("Error", "Gagal memuat menu: " + e.getMessage());
         }
+    }
+
+    @FXML
+    private void onCheckout() {
+        showAlert("Checkout", "Fitur checkout berhasil dijalankan.");
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:postgresql://localhost:5432/your_database", "your_user", "your_password");
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.show();
-    }
-
     public static class MenuItem {
-        private String name;
-        private String description;
-        private double price;
-        private int quantity;
+        private final String name;
+        private final String description;
+        private final Double price;
 
-        public MenuItem(String name, String description, double price, int quantity) {
+        public MenuItem(String name, String description, Double price) {
             this.name = name;
             this.description = description;
             this.price = price;
-            this.quantity = quantity;
         }
 
-        public String getName() { return name; }
-        public String getDescription() { return description; }
-        public double getPrice() { return price; }
-        public int getQuantity() { return quantity; }
-        public void setQuantity(int quantity) { this.quantity = quantity; }
+        public String getName() {
+            return name;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public Double getPrice() {
+            return price;
+        }
     }
 }
