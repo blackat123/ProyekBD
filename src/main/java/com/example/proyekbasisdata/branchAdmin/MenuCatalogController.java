@@ -2,9 +2,9 @@ package com.example.proyekbasisdata.branchAdmin;
 
 import com.example.proyekbasisdata.HelloApplication;
 import com.example.proyekbasisdata.datasources.DataSourceManager;
+import com.example.proyekbasisdata.dtos.Catalog;
 import com.example.proyekbasisdata.dtos.Category;
 import com.example.proyekbasisdata.dtos.Menu;
-import com.example.proyekbasisdata.dtos.BranchMenu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +39,7 @@ public class MenuCatalogController {
     private GridPane menuGridPane;
 
     private List<Menu> centralMenuList;
-    private List<BranchMenu> branchMenuList;
+    private List<Catalog> catalogList;
     private List<Category> categoryList;
     private int currentCategoryId = -1;
     private int branchId;
@@ -72,7 +72,7 @@ public class MenuCatalogController {
         if (!categoryList.isEmpty()) {
             currentCategoryId = categoryList.get(0).getId();
             loadCentralMenus();
-            loadBranchMenus();
+            loadCatalogs();
             displayCategories();
             displayMenus();
         } else {
@@ -121,14 +121,14 @@ public class MenuCatalogController {
         }
     }
 
-    private void loadBranchMenus() {
-        branchMenuList = new ArrayList<>();
+    private void loadCatalogs() {
+        catalogList = new ArrayList<>();
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
             PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT bm.*, m.image, m.name, m.description, m.price, m.category_id " +
-                            "FROM branch_menus bm JOIN menus m ON bm.menu_id = m.id " +
-                            "WHERE bm.branch_id = ? AND m.category_id = ? ORDER BY bm.id"
+                    "SELECT c.*, m.image, m.name, m.description, m.price, m.category_id " +
+                            "FROM catalogs c JOIN menus m ON c.menu_id = m.id " +
+                            "WHERE c.branch_id = ? AND m.category_id = ? ORDER BY c.id"
             );
             stmt.setInt(1, branchId);
             stmt.setInt(2, currentCategoryId);
@@ -136,22 +136,21 @@ public class MenuCatalogController {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
+                int stock = rs.getInt("stock");
+                int branchId = rs.getInt("branch_id");
                 int menuId = rs.getInt("menu_id");
-                boolean isAvailable = rs.getBoolean("is_available");
-                double customPrice = rs.getDouble("custom_price");
 
                 String image = rs.getString("image");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                double originalPrice = rs.getDouble("price");
+                double price = rs.getDouble("price");
                 int categoryId = rs.getInt("category_id");
 
-                BranchMenu branchMenu = new BranchMenu(id, branchId, menuId, isAvailable, customPrice,
-                        image, name, description, originalPrice, categoryId);
-                branchMenuList.add(branchMenu);
+                Catalog catalog = new Catalog(id, stock, branchId, menuId, image, name, description, price, categoryId);
+                catalogList.add(catalog);
             }
         } catch (SQLException e) {
-            showErrorAlert("Database Error", "Failed to load branch menus: " + e.getMessage());
+            showErrorAlert("Database Error", "Failed to load catalogs: " + e.getMessage());
         }
     }
 
@@ -204,7 +203,7 @@ public class MenuCatalogController {
         button.setOnAction(e -> {
             currentCategoryId = category.getId();
             loadCentralMenus();
-            loadBranchMenus();
+            loadCatalogs();
             displayCategories();
             displayMenus();
         });
@@ -245,25 +244,25 @@ public class MenuCatalogController {
             int col = i % 2;
 
             Menu centralMenu = centralMenuList.get(i);
-            BranchMenu branchMenu = findBranchMenuByMenuId(centralMenu.getId());
+            Catalog catalog = findCatalogByMenuId(centralMenu.getId());
 
-            AnchorPane menuPane = createMenuPane(centralMenu, branchMenu);
+            AnchorPane menuPane = createMenuPane(centralMenu, catalog);
             menuGridPane.add(menuPane, col, row);
         }
     }
 
-    private BranchMenu findBranchMenuByMenuId(int menuId) {
-        return branchMenuList.stream()
-                .filter(bm -> bm.getMenuId() == menuId)
+    private Catalog findCatalogByMenuId(int menuId) {
+        return catalogList.stream()
+                .filter(c -> c.getMenuId() == menuId)
                 .findFirst()
                 .orElse(null);
     }
 
-    private AnchorPane createMenuPane(Menu centralMenu, BranchMenu branchMenu) {
+    private AnchorPane createMenuPane(Menu centralMenu, Catalog catalog) {
         AnchorPane pane = new AnchorPane();
-        boolean isAdded = branchMenu != null;
+        boolean isInCatalog = catalog != null;
 
-        if (isAdded) {
+        if (isInCatalog) {
             pane.setStyle("-fx-background-color: #E8F5E8; -fx-background-radius: 15px; -fx-border-color: #4CAF50; -fx-border-width: 2px; -fx-border-radius: 15px;");
         } else {
             pane.setStyle("-fx-background-color: #f4d7a7; -fx-background-radius: 15px;");
@@ -314,38 +313,37 @@ public class MenuCatalogController {
         AnchorPane.setRightAnchor(descLabel, 15.0);
         AnchorPane.setTopAnchor(descLabel, 55.0);
 
-        double displayPrice = isAdded && branchMenu.getCustomPrice() > 0 ? branchMenu.getCustomPrice() : centralMenu.getPrice();
-        Label priceLabel = new Label(String.format("Rp. %.0f", displayPrice));
+        Label priceLabel = new Label(String.format("Rp. %.0f", centralMenu.getPrice()));
         priceLabel.setAlignment(javafx.geometry.Pos.CENTER);
         priceLabel.setStyle("-fx-text-fill: #2196F3;");
         priceLabel.setFont(Font.font("Poppins Bold", 22.0));
-        AnchorPane.setBottomAnchor(priceLabel, 45.0);
+        AnchorPane.setBottomAnchor(priceLabel, 25.0);
         AnchorPane.setLeftAnchor(priceLabel, 180.0);
 
-        if (isAdded) {
-            Label statusLabel = new Label(branchMenu.isAvailable() ? "Available" : "Not Available");
-            statusLabel.setStyle(branchMenu.isAvailable() ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #F44336;");
-            statusLabel.setFont(Font.font("Poppins SemiBold", 12.0));
-            AnchorPane.setBottomAnchor(statusLabel, 25.0);
-            AnchorPane.setLeftAnchor(statusLabel, 180.0);
-            pane.getChildren().add(statusLabel);
+        if (isInCatalog) {
+            Label stockLabel = new Label("Stock: " + catalog.getStock());
+            stockLabel.setStyle(catalog.getStock() > 0 ? "-fx-text-fill: #4CAF50;" : "-fx-text-fill: #F44336;");
+            stockLabel.setFont(Font.font("Poppins SemiBold", 12.0));
+            AnchorPane.setBottomAnchor(stockLabel, 5.0);
+            AnchorPane.setLeftAnchor(stockLabel, 180.0);
+            pane.getChildren().add(stockLabel);
         }
 
-        if (isAdded) {
+        if (isInCatalog) {
             Button editButton = createActionButton("#FF9800", "edit-icon.png");
-            editButton.setOnAction(e -> onEditBranchMenuClick(branchMenu, centralMenu));
+            editButton.setOnAction(e -> onEditCatalogClick(catalog, centralMenu));
             AnchorPane.setBottomAnchor(editButton, 27.0);
             AnchorPane.setRightAnchor(editButton, 55.0);
 
             Button removeButton = createActionButton("#F44336", "delete-icon.png");
-            removeButton.setOnAction(e -> onRemoveMenuFromBranchClick(branchMenu));
+            removeButton.setOnAction(e -> onRemoveMenuFromCatalogClick(catalog));
             AnchorPane.setBottomAnchor(removeButton, 27.0);
             AnchorPane.setRightAnchor(removeButton, 15.0);
 
             pane.getChildren().addAll(editButton, removeButton);
         } else {
             Button addButton = createActionButton("#4CAF50", "add-icon.png");
-            addButton.setOnAction(e -> onAddMenuToBranchClick(centralMenu));
+            addButton.setOnAction(e -> onAddMenuToCatalogClick(centralMenu));
             AnchorPane.setBottomAnchor(addButton, 27.0);
             AnchorPane.setRightAnchor(addButton, 15.0);
 
@@ -382,68 +380,107 @@ public class MenuCatalogController {
         return button;
     }
 
-    private void onAddMenuToBranchClick(Menu menu) {
-        try {
-            Connection connection = DataSourceManager.getDatabaseConnection();
-            PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO branch_menus (branch_id, menu_id, is_available, custom_price) VALUES (?, ?, ?, ?)"
-            );
-            stmt.setInt(1, branchId);
-            stmt.setInt(2, menu.getId());
-            stmt.setBoolean(3, true);
-            stmt.setDouble(4, 0.0);
+    private void onAddMenuToCatalogClick(Menu menu) {
+        // Show dialog to input initial stock
+        TextInputDialog dialog = new TextInputDialog("0");
+        dialog.setTitle("Add Menu to Catalog");
+        dialog.setHeaderText("Set initial stock for this menu:");
+        dialog.setContentText("Stock:");
 
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected > 0) {
-                showInfoAlert("Success", "Menu added to branch catalog successfully.");
-                loadBranchMenus();
-                displayMenus();
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            try {
+                int stock = Integer.parseInt(result.get());
+                if (stock < 0) {
+                    showErrorAlert("Invalid Input", "Stock cannot be negative.");
+                    return;
+                }
+
+                Connection connection = DataSourceManager.getDatabaseConnection();
+                PreparedStatement stmt = connection.prepareStatement(
+                        "INSERT INTO catalogs (stock, branch_id, menu_id) VALUES (?, ?, ?)"
+                );
+                stmt.setInt(1, stock);
+                stmt.setInt(2, branchId);
+                stmt.setInt(3, menu.getId());
+
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    showInfoAlert("Success", "Menu added to catalog successfully.");
+                    loadCatalogs();
+                    displayMenus();
+                }
+            } catch (NumberFormatException e) {
+                showErrorAlert("Invalid Input", "Please enter a valid number for stock.");
+            } catch (SQLException e) {
+                showErrorAlert("Database Error", "Failed to add menu to catalog: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            showErrorAlert("Database Error", "Failed to add menu to branch: " + e.getMessage());
         }
     }
 
-    private void onEditBranchMenuClick(BranchMenu branchMenu, Menu centralMenu) {
-        try {
-            HelloApplication app = HelloApplication.getApplicationInstance();
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/BranchMenuForm.fxml"));
-            Scene scene = new Scene(loader.load());
-            BranchMenuFormController controller = loader.getController();
-            controller.initData(branchMenu, centralMenu);
-            app.getPrimaryStage().setScene(scene);
-            app.getPrimaryStage().sizeToScene();
-        } catch (IOException e) {
-            showErrorAlert("Navigation Error", "Failed to open menu form: " + e.getMessage());
+    private void onEditCatalogClick(Catalog catalog, Menu menu) {
+        // Show dialog to edit stock
+        TextInputDialog dialog = new TextInputDialog(String.valueOf(catalog.getStock()));
+        dialog.setTitle("Edit Menu Stock");
+        dialog.setHeaderText("Edit stock for: " + menu.getName());
+        dialog.setContentText("Stock:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            try {
+                int newStock = Integer.parseInt(result.get());
+                if (newStock < 0) {
+                    showErrorAlert("Invalid Input", "Stock cannot be negative.");
+                    return;
+                }
+
+                Connection connection = DataSourceManager.getDatabaseConnection();
+                PreparedStatement stmt = connection.prepareStatement(
+                        "UPDATE catalogs SET stock = ? WHERE id = ?"
+                );
+                stmt.setInt(1, newStock);
+                stmt.setInt(2, catalog.getId());
+
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    showInfoAlert("Success", "Stock updated successfully.");
+                    loadCatalogs();
+                    displayMenus();
+                }
+            } catch (NumberFormatException e) {
+                showErrorAlert("Invalid Input", "Please enter a valid number for stock.");
+            } catch (SQLException e) {
+                showErrorAlert("Database Error", "Failed to update stock: " + e.getMessage());
+            }
         }
     }
 
-    private void onRemoveMenuFromBranchClick(BranchMenu branchMenu) {
+    private void onRemoveMenuFromCatalogClick(Catalog catalog) {
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Remove Menu");
-        confirmAlert.setHeaderText("Are you sure you want to remove this menu from branch catalog?");
+        confirmAlert.setHeaderText("Are you sure you want to remove this menu from catalog?");
         confirmAlert.setContentText("This action cannot be undone.");
 
         Optional<ButtonType> result = confirmAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            removeMenuFromBranch(branchMenu.getId());
+            removeMenuFromCatalog(catalog.getId());
         }
     }
 
-    private void removeMenuFromBranch(int branchMenuId) {
+    private void removeMenuFromCatalog(int catalogId) {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM branch_menus WHERE id = ?");
-            stmt.setInt(1, branchMenuId);
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM catalogs WHERE id = ?");
+            stmt.setInt(1, catalogId);
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
-                showInfoAlert("Success", "Menu removed from branch catalog successfully.");
-                loadBranchMenus();
+                showInfoAlert("Success", "Menu removed from catalog successfully.");
+                loadCatalogs();
                 displayMenus();
             }
         } catch (SQLException e) {
-            showErrorAlert("Database Error", "Failed to remove menu from branch: " + e.getMessage());
+            showErrorAlert("Database Error", "Failed to remove menu from catalog: " + e.getMessage());
         }
     }
 

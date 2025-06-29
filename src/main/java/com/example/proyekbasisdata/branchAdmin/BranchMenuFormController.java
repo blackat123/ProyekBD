@@ -2,7 +2,7 @@ package com.example.proyekbasisdata.branchAdmin;
 
 import com.example.proyekbasisdata.HelloApplication;
 import com.example.proyekbasisdata.datasources.DataSourceManager;
-import com.example.proyekbasisdata.dtos.BranchMenu;
+import com.example.proyekbasisdata.dtos.Catalog;
 import com.example.proyekbasisdata.dtos.Menu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,7 +44,7 @@ public class BranchMenuFormController {
     @FXML
     private Button cancelButton;
 
-    private BranchMenu branchMenu;
+    private Catalog branchMenu;
     private Menu centralMenu;
     private int branchId;
 
@@ -60,7 +60,7 @@ public class BranchMenuFormController {
         });
     }
 
-    public void initData(BranchMenu branchMenu, Menu centralMenu) {
+    public void initData(Catalog branchMenu, Menu centralMenu) {
         this.branchMenu = branchMenu;
         this.centralMenu = centralMenu;
 
@@ -86,14 +86,6 @@ public class BranchMenuFormController {
 
             menuNameLabel.setText(centralMenu.getName());
             menuDescriptionLabel.setText(centralMenu.getDescription());
-            originalPriceLabel.setText(String.format("Rp. %.0f", centralMenu.getPrice()));
-        }
-
-        if (branchMenu != null) {
-            customPriceField.setText(branchMenu.getCustomPrice() > 0 ? String.valueOf(branchMenu.getCustomPrice()) : "");
-            availabilityCheckBox.setSelected(branchMenu.isAvailable());
-        } else {
-            availabilityCheckBox.setSelected(true);
         }
     }
 
@@ -111,46 +103,6 @@ public class BranchMenuFormController {
             showErrorAlert("Database Error", "Failed to get branch ID: " + e.getMessage());
         }
         return -1;
-    }
-
-    @FXML
-    public void onSaveClick(ActionEvent event) {
-        try {
-            double customPrice = 0.0;
-            if (!customPriceField.getText().trim().isEmpty()) {
-                customPrice = Double.parseDouble(customPriceField.getText().trim());
-                if (customPrice < 0) {
-                    showErrorAlert("Validation Error", "Custom price cannot be negative.");
-                    return;
-                }
-            }
-
-            boolean isAvailable = availabilityCheckBox.isSelected();
-
-            Connection connection = DataSourceManager.getDatabaseConnection();
-
-            if (branchMenu != null) {
-                PreparedStatement stmt = connection.prepareStatement(
-                        "UPDATE branch_menus SET is_available = ?, custom_price = ? WHERE id = ?"
-                );
-                stmt.setBoolean(1, isAvailable);
-                stmt.setDouble(2, customPrice);
-                stmt.setInt(3, branchMenu.getId());
-
-                int rowsAffected = stmt.executeUpdate();
-                if (rowsAffected > 0) {
-                    showInfoAlert("Success", "Branch menu updated successfully.");
-                    navigateBackToMenuCatalog();
-                }
-            } else {
-                showErrorAlert("Error", "Invalid menu data.");
-            }
-
-        } catch (NumberFormatException e) {
-            showErrorAlert("Validation Error", "Please enter a valid custom price.");
-        } catch (SQLException e) {
-            showErrorAlert("Database Error", "Failed to save menu: " + e.getMessage());
-        }
     }
 
     @FXML

@@ -247,7 +247,7 @@ public class DeliveryAssignmentController {
             if (!"ALL".equals(statusFilterComboBox.getValue())) {
                 sql += " AND da.status = ?";
             }
-            
+
 
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, branchId);
