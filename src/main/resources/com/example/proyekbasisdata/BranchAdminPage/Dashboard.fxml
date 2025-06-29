@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyekbasisdata.branchAdmin.DashboardController">
+    <top>
+        <VBox>
+            <children>
+                <HBox alignment="CENTER" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+                    <children>
+                        <Label text="Branch Admin Dashboard" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="30.0" style="-fx-background-color: #ecf0f1;">
+            <children>
+                <Label text="Welcome to Branch Administration Panel" textFill="#2c3e50">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+
+                <VBox alignment="CENTER" spacing="20.0" maxWidth="400.0">
+                    <children>
+                        <Button fx:id="menuCatalogButton" onAction="#onMenuCatalogClick" prefHeight="60.0" prefWidth="350.0"
+                                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                text="📋 Menu Catalog Management" />
+
+                        <Button fx:id="staffManagementButton" onAction="#onStaffManagementClick" prefHeight="60.0" prefWidth="350.0"
+                                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                text="👥 Staff Management" />
+
+                        <Button fx:id="orderHistoryButton" onAction="#onOrderHistoryClick" prefHeight="60.0" prefWidth="350.0"
+                                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                text="📊 Order History" />
+
+                        <Button fx:id="deliveryAssignmentButton" onAction="#onDeliveryAssignmentClick" prefHeight="60.0" prefWidth="350.0"
+                                style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 8;"
+                                text="🚚 Delivery Assignment" />
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            </padding>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #34495e; -fx-padding: 10;">
+            <children>
+                <Button fx:id="logoutButton" onAction="#onLogoutClick"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"
+                        text="🚪 Logout" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>
