@@ -248,7 +248,6 @@ public class MenuController {
 
         // Menu name
         Label nameLabel = new Label(menu.getName());
-        nameLabel.setWrapText(true);
         nameLabel.setFont(Font.font("Poppins SemiBold", 24.0));
         AnchorPane.setLeftAnchor(nameLabel, 180.0);
         AnchorPane.setRightAnchor(nameLabel, 15.0);

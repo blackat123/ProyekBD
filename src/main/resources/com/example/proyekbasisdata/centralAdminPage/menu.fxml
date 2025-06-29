@@ -152,13 +152,13 @@
                     </cursor>
                 </Button>
 
-                <ScrollPane fitToHeight="true" hbarPolicy="AS_NEEDED" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
+                <ScrollPane fitToHeight="true" hbarPolicy="NEVER" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
                     <content>
                         <GridPane fx:id="categoryGridPane" prefHeight="40.0" />
                     </content>
                 </ScrollPane>
 
-                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="200.0">
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #ffecd6; -fx-background: #ffecd6;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="200.0">
                     <content>
                         <GridPane fx:id="menuGridPane" />
                     </content>

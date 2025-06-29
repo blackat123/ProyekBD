@@ -11,4 +11,6 @@ module com.example.proyekbasisdata {
     exports com.example.proyekbasisdata.centralAdmin;
     opens com.example.proyekbasisdata.dtos to javafx.base;
     exports com.example.proyekbasisdata.dtos;
+    opens com.example.proyekbasisdata.Customer to javafx.fxml;
+    exports com.example.proyekbasisdata.Customer;
 }
