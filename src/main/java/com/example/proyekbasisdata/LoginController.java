@@ -105,7 +105,7 @@ public class LoginController {
                     }
                     case "Branch Admin" -> {
                         // Load the branch admin scene
-                        loader = new FXMLLoader(HelloApplication.class.getResource("signup-page.fxml"));
+                        loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/Dashboard.fxml"));
                     }
                     case "Central Admin" -> {
                         // Load the central admin scene

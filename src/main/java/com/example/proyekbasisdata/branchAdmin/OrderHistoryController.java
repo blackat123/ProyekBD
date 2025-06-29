@@ -250,7 +250,7 @@ public class OrderHistoryController {
             Connection connection = DataSourceManager.getDatabaseConnection();
 
             String sql = """
-                SELECT o.id, o.customer_name, o.customer_address, o.customer_phone, 
+                SELECT o.id, o.customers_name, o.customers_address, o.customers_phone, 
                        o.order_type, o.status, o.total_price, o.created_at, o.updated_at,
                        GROUP_CONCAT(CONCAT(oi.quantity, 'x ', m.name) SEPARATOR ', ') as order_items
                 FROM orders o
@@ -452,7 +452,7 @@ public class OrderHistoryController {
     @FXML
     public void onDashboardClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/Dashboard.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -461,7 +461,7 @@ public class OrderHistoryController {
     @FXML
     public void onMenuCatalogClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/menu-catalog.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/MenuCatalog.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -470,7 +470,7 @@ public class OrderHistoryController {
     @FXML
     public void onStaffManagementClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/staff-management.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/StaffManagement.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -479,7 +479,7 @@ public class OrderHistoryController {
     @FXML
     public void onDeliveryAssignmentClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/delivery-assignment.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/DeliveryAssignment.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();

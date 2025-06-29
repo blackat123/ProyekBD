@@ -154,7 +154,7 @@ public class StaffManagementController {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
             PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT * FROM staff WHERE branch_id = ? ORDER BY id DESC"
+                    "SELECT * FROM staffs WHERE branch_id = ? ORDER BY id DESC"
             );
             stmt.setInt(1, branchId);
             ResultSet rs = stmt.executeQuery();
@@ -186,7 +186,7 @@ public class StaffManagementController {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
 
-            PreparedStatement checkStmt = connection.prepareStatement("SELECT id FROM staff WHERE username = ?");
+            PreparedStatement checkStmt = connection.prepareStatement("SELECT id FROM staffs WHERE username = ?");
             checkStmt.setString(1, usernameField.getText().trim());
             ResultSet checkRs = checkStmt.executeQuery();
 
@@ -196,7 +196,7 @@ public class StaffManagementController {
             }
 
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO staff (name, username, password, phone, role, status, branch_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO staffs (name, username, password, phone, role, status, branch_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             stmt.setString(1, nameField.getText().trim());
             stmt.setString(2, usernameField.getText().trim());
@@ -231,7 +231,7 @@ public class StaffManagementController {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
 
-            PreparedStatement checkStmt = connection.prepareStatement("SELECT id FROM staff WHERE username = ? AND id != ?");
+            PreparedStatement checkStmt = connection.prepareStatement("SELECT id FROM staffs WHERE username = ? AND id != ?");
             checkStmt.setString(1, usernameField.getText().trim());
             checkStmt.setInt(2, selectedStaff.getId());
             ResultSet checkRs = checkStmt.executeQuery();
@@ -293,7 +293,7 @@ public class StaffManagementController {
     private void deleteStaff(int staffId) {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM staff WHERE id = ?");
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM staffs WHERE id = ?");
             stmt.setInt(1, staffId);
 
             int rowsAffected = stmt.executeUpdate();
@@ -354,7 +354,7 @@ public class StaffManagementController {
     @FXML
     public void onDashboardClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/Dashboard.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -363,7 +363,7 @@ public class StaffManagementController {
     @FXML
     public void onMenuCatalogClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/menu-catalog.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/MenuCatalog.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -372,7 +372,7 @@ public class StaffManagementController {
     @FXML
     public void onOrderHistoryClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/order-history.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/OrderHistory.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -381,7 +381,7 @@ public class StaffManagementController {
     @FXML
     public void onDeliveryAssignmentClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/delivery-assignment.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/DeliveryAssignment.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();

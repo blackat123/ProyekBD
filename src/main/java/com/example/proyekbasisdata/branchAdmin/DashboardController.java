@@ -13,7 +13,7 @@ public class DashboardController {
     @FXML
     public void onMenuCatalogClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/menu-catalog.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/MenuCatalog.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -22,7 +22,7 @@ public class DashboardController {
     @FXML
     public void onStaffManagementClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/staff-management.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/StaffManagement.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -31,7 +31,7 @@ public class DashboardController {
     @FXML
     public void onOrderHistoryClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/order-history.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/OrderHistory.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();
@@ -40,7 +40,7 @@ public class DashboardController {
     @FXML
     public void onDeliveryAssignmentClick(ActionEvent event) throws IOException {
         HelloApplication app = HelloApplication.getApplicationInstance();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/delivery-assignment.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/DeliveryAssignment.fxml"));
         Scene scene = new Scene(loader.load());
         app.getPrimaryStage().setScene(scene);
         app.getPrimaryStage().sizeToScene();

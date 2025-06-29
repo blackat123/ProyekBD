@@ -161,7 +161,7 @@ public class BranchMenuFormController {
     private void navigateBackToMenuCatalog() {
         try {
             HelloApplication app = HelloApplication.getApplicationInstance();
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("branchAdminPage/menu-catalog.fxml"));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("BranchAdminPage/MenuCatalog.fxml"));
             Scene scene = new Scene(loader.load());
             app.getPrimaryStage().setScene(scene);
             app.getPrimaryStage().sizeToScene();

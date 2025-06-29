@@ -13,4 +13,6 @@ module com.example.proyekbasisdata {
     exports com.example.proyekbasisdata.dtos;
     opens com.example.proyekbasisdata.Customer to javafx.fxml;
     exports com.example.proyekbasisdata.Customer;
+    opens com.example.proyekbasisdata.branchAdmin to javafx.fxml;
+    exports com.example.proyekbasisdata.branchAdmin;
 }
