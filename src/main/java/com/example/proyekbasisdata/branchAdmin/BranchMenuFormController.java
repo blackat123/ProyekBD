@@ -100,12 +100,12 @@ public class BranchMenuFormController {
     private int getBranchIdByAdminId(int adminId) {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT branch_id FROM branch_admins WHERE id = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM branch_admins WHERE id = ?");
             stmt.setInt(1, adminId);
             var rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("branch_id");
+                return rs.getInt("id");
             }
         } catch (SQLException e) {
             showErrorAlert("Database Error", "Failed to get branch ID: " + e.getMessage());

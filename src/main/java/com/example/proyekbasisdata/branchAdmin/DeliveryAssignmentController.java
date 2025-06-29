@@ -36,7 +36,7 @@ public class DeliveryAssignmentController {
 
         public DeliveryAssignment(int id, int orderId, String customerName, String customerAddress,
                                   String customerPhone, String assignedStaff, String status,
-                                  LocalDateTime assignedAt, LocalDateTime deliveredAt, double totalAmount) {
+                                  LocalDateTime assignedAt, double totalAmount) {
             this.id = id;
             this.orderId = orderId;
             this.customerName = customerName;
@@ -128,12 +128,12 @@ public class DeliveryAssignmentController {
     private int getBranchIdByAdminId(int adminId) {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT branch_id FROM branch_admins WHERE id = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM branch_admins WHERE id = ?");
             stmt.setInt(1, adminId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("branch_id");
+                return rs.getInt("id");
             }
         } catch (SQLException e) {
             showErrorAlert("Database Error", "Failed to get branch ID: " + e.getMessage());
@@ -206,7 +206,7 @@ public class DeliveryAssignmentController {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
             PreparedStatement stmt = connection.prepareStatement(
-                    "SELECT * FROM staff WHERE branch_id = ? AND role = 'DELIVERY_STAFF' AND status = 'ACTIVE' ORDER BY name"
+                    "SELECT * FROM staffs WHERE branch_id = ? AND position = 'DELIVERIES' ORDER BY name"
             );
             stmt.setInt(1, branchId);
             ResultSet rs = stmt.executeQuery();
@@ -218,7 +218,7 @@ public class DeliveryAssignmentController {
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("phone"),
-                        rs.getString("role"),
+                        rs.getString("position"),
                         rs.getString("status"),
                         rs.getInt("branch_id")
                 );
@@ -235,20 +235,19 @@ public class DeliveryAssignmentController {
             Connection connection = DataSourceManager.getDatabaseConnection();
 
             String sql = """
-                SELECT da.id, da.order_id, da.staff_id, da.status, da.assigned_at, da.delivered_at,
-                       o.customer_name, o.customer_address, o.customer_phone, o.total_price,
-                       s.name as staff_name
-                FROM delivery_assignments da
-                JOIN orders o ON da.order_id = o.id
-                LEFT JOIN staff s ON da.staff_id = s.id
-                WHERE o.branch_id = ?
+                        SELECT da.id, da.staff_id, da.status, da.delivery_time,
+                               o.customer_id, o.total_price,
+                               s.name as staff_name
+                        FROM deliveries da
+                        JOIN orders o ON da.id = o.id
+                        LEFT JOIN staffs s ON da.staff_id = s.id
+                        WHERE o.branch_id = ?
                 """;
 
             if (!"ALL".equals(statusFilterComboBox.getValue())) {
                 sql += " AND da.status = ?";
             }
-
-            sql += " ORDER BY da.assigned_at DESC";
+            
 
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, branchId);
@@ -262,13 +261,12 @@ public class DeliveryAssignmentController {
             while (rs.next()) {
                 DeliveryAssignment assignment = new DeliveryAssignment(
                         rs.getInt("id"),
-                        rs.getInt("order_id"),
-                        rs.getString("customer_name"),
-                        rs.getString("customer_address"),
-                        rs.getString("customer_phone"),
-                        rs.getString("staff_name") != null ? rs.getString("staff_name") : "Not Assigned",
+                        rs.getInt("orders_id"),
+                        rs.getString("customers_name"),
+                        rs.getString("customers_address"),
+                        rs.getString("customers_phone"),
+                        rs.getString("staffs_name") != null ? rs.getString("staffs_name") : "Not Assigned",
                         rs.getString("status"),
-                        rs.getTimestamp("assigned_at") != null ? rs.getTimestamp("assigned_at").toLocalDateTime() : null,
                         rs.getTimestamp("delivered_at") != null ? rs.getTimestamp("delivered_at").toLocalDateTime() : null,
                         rs.getDouble("total_price")
                 );
@@ -295,7 +293,7 @@ public class DeliveryAssignmentController {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
             PreparedStatement stmt = connection.prepareStatement(
-                    "UPDATE delivery_assignments SET staff_id = ?, status = 'ASSIGNED' WHERE id = ?"
+                    "UPDATE deliveries SET staffs_id = ?, status = 'ASSIGNED' WHERE id = ?"
             );
             stmt.setInt(1, selectedStaff.getId());
             stmt.setInt(2, selectedDelivery.getId());
@@ -333,7 +331,7 @@ public class DeliveryAssignmentController {
     private void updateDeliveryStatus(int deliveryId, String newStatus) {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
-            String sql = "UPDATE delivery_assignments SET status = ?";
+            String sql = "UPDATE deliveries SET status = ?";
 
             if ("DELIVERED".equals(newStatus)) {
                 sql += ", delivered_at = CURRENT_TIMESTAMP";

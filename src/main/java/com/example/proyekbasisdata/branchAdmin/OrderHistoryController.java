@@ -140,12 +140,12 @@ public class OrderHistoryController {
     private int getBranchIdByAdminId(int adminId) {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT branch_id FROM branch_admins WHERE id = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM branch_admins WHERE id = ?");
             stmt.setInt(1, adminId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("branch_id");
+                return rs.getInt("id");
             }
         } catch (SQLException e) {
             showErrorAlert("Database Error", "Failed to get branch ID: " + e.getMessage());
@@ -195,10 +195,7 @@ public class OrderHistoryController {
                         case "PREPARING":
                             setStyle("-fx-text-fill: #9C27B0; -fx-font-weight: bold;");
                             break;
-                        case "READY":
-                            setStyle("-fx-text-fill: #4CAF50; -fx-font-weight: bold;");
-                            break;
-                        case "DELIVERED":
+                        case "READY", "DELIVERED":
                             setStyle("-fx-text-fill: #4CAF50; -fx-font-weight: bold;");
                             break;
                         case "CANCELLED":

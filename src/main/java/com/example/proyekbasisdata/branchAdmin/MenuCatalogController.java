@@ -54,12 +54,12 @@ public class MenuCatalogController {
     private int getBranchIdByAdminId(int adminId) {
         try {
             Connection connection = DataSourceManager.getDatabaseConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT branch_id FROM branch_admins WHERE id = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM branch_admins WHERE id = ?");
             stmt.setInt(1, adminId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("branch_id");
+                return rs.getInt("id");
             }
         } catch (SQLException e) {
             showErrorAlert("Database Error", "Failed to get branch ID: " + e.getMessage());
@@ -391,7 +391,7 @@ public class MenuCatalogController {
             stmt.setInt(1, branchId);
             stmt.setInt(2, menu.getId());
             stmt.setBoolean(3, true);
-            stmt.setDouble(4, 0.0); 
+            stmt.setDouble(4, 0.0);
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
