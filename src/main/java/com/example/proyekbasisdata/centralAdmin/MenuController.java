@@ -225,21 +225,32 @@ public class MenuController {
         imageView.setPreserveRatio(true);
 
         try {
+            String imagePath = "/com/example/proyekbasisdata/assets/";
+            Image imageToSet;
+
             if (menu.getImage() != null && !menu.getImage().isEmpty()) {
-                File file = new File("src/main/resources/com/example/proyekbasisdata/assets/" + menu.getImage());
-                if (file.exists()) {
-                    imageView.setImage(new Image(file.toURI().toString()));
+                var imageStream = getClass().getResourceAsStream(imagePath + menu.getImage());
+                if (imageStream != null) {
+                    imageToSet = new Image(imageStream);
                 } else {
-                    Image placeholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/proyekbasisdata/assets/placeholder-image.png")));
-                    imageView.setImage(placeholder);
+                    System.out.println("Menu image not found: " + menu.getImage() + ". Using placeholder.");
+                    imageStream = Objects.requireNonNull(getClass().getResourceAsStream(imagePath + "placeholder-image.png"));
+                    imageToSet = new Image(imageStream);
                 }
             } else {
+                var imageStream = Objects.requireNonNull(getClass().getResourceAsStream(imagePath + "placeholder-image.png"));
+                imageToSet = new Image(imageStream);
+            }
+            imageView.setImage(imageToSet);
+
+        } catch (Exception e) {
+            System.err.println("Error loading image: " + e.getMessage());
+            try {
                 Image placeholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/proyekbasisdata/assets/placeholder-image.png")));
                 imageView.setImage(placeholder);
+            } catch (Exception ex) {
+                System.err.println("Failed to load even the placeholder image: " + ex.getMessage());
             }
-        } catch (Exception e) {
-            Image placeholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/example/proyekbasisdata/assets/placeholder-image.png")));
-            imageView.setImage(placeholder);
         }
 
         AnchorPane.setBottomAnchor(imageView, 25.0);
