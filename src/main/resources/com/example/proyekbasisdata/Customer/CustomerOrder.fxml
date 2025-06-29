@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyekbasisdata.Customer.CustomerOrderController">
+    <children>
+        <!-- Sidebar -->
+        <VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="20" style="-fx-background-color: #e5b17a;">
+            <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+           <children>
+               <ImageView fitHeight="100.0" fitWidth="100.0">
+                   <image>
+                       <Image url="@../assets/logo.png" />
+                   </image>
+               </ImageView>
+               <Button fx:id="dashboardButton" onAction="#dasboardButtonClick" prefWidth="150" style="-fx-background-color: transparent; -fx-border-color: #8A4B1F; -fx-border-width: 2; -fx-text-fill: #8A4B1F; -fx-font-weight: bold;" text="Dashboard" />
+               <Button fx:id="orderButton" prefWidth="150" style="-fx-background-color: #d7944c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20px;" text="Order" />
+               <Button fx:id="historyButton" onAction="#historyButtonClick" prefWidth="150" style="-fx-background-color: transparent; -fx-border-color: #8A4B1F; -fx-border-width: 2; -fx-text-fill: #8A4B1F; -fx-font-weight: bold;" text="History" />
+               <Button fx:id="logoutButton" onAction="#onLogoutClick" prefWidth="150" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="Logout" />
+           </children>
+        </VBox>
+
+        <!-- Content Area -->
+        <AnchorPane prefWidth="980.0" style="-fx-background-color: #ffecd6;">
+            <children>
+                <Label layoutX="50.0" layoutY="40.0" text="Pemesanan Menu">
+                    <font>
+                        <Font name="Poppins SemiBold" size="36.0" />
+                    </font>
+                </Label>
+
+                <HBox layoutX="50.0" layoutY="100.0" spacing="20.0">
+   <children>
+                       <Label text="Pilih Cabang:" />
+                       <ComboBox fx:id="branchComboBox" prefWidth="200.0" />
+   </children>
+                </HBox>
+
+                <TableView fx:id="menuTableView" layoutX="50.0" layoutY="150.0" prefHeight="400.0" prefWidth="880.0">
+                    <columns>
+                        <TableColumn fx:id="colName" prefWidth="200.0" text="Nama Menu" />
+                        <TableColumn fx:id="colDescription" prefWidth="300.0" text="Deskripsi" />
+                        <TableColumn fx:id="colPrice" prefWidth="100.0" text="Harga" />
+                        <TableColumn fx:id="colQuantity" prefWidth="100.0" text="Quantity" />
+                        <TableColumn fx:id="colAction" prefWidth="100.0" text="Aksi" />
+                    </columns>
+                </TableView>
+
+                <Button fx:id="checkoutButton" layoutX="800.0" layoutY="580.0" onAction="#checkoutButtonClick" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #8A4B1F; -fx-text-fill: white; -fx-font-weight: bold;" text="Checkout" />
+            <Label fx:id="labelTotal" layoutX="50.0" layoutY="569.0" prefHeight="65.0" prefWidth="413.0" text="Rp. 0" textFill="#793c3c">
+               <font>
+                  <Font name="Arial Black" size="47.0" />
+               </font></Label>
+            </children>
+        </AnchorPane>
+    </children>
+</HBox>
