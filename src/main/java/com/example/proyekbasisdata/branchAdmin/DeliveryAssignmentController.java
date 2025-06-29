@@ -215,11 +215,7 @@ public class DeliveryAssignmentController {
                 Staff staff = new Staff(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("phone"),
                         rs.getString("position"),
-                        rs.getString("status"),
                         rs.getInt("branch_id")
                 );
                 deliveryStaffList.add(staff);

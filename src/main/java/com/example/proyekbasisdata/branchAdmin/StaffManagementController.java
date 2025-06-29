@@ -142,11 +142,7 @@ public class StaffManagementController {
 
     private void populateFields(Staff staff) {
         nameField.setText(staff.getName());
-        usernameField.setText(staff.getUsername());
-        phoneField.setText(staff.getPhone());
-        roleComboBox.setValue(staff.getRole());
-        statusComboBox.setValue(staff.getStatus());
-        passwordField.clear(); // Don't show password for security
+        passwordField.clear();
     }
 
     private void loadStaffData() {
@@ -163,11 +159,7 @@ public class StaffManagementController {
                 Staff staff = new Staff(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("username"),
-                        rs.getString("password"), // Will be masked in display
-                        rs.getString("phone"),
-                        rs.getString("role"),
-                        rs.getString("status"),
+                        rs.getString("Position"),
                         rs.getInt("branch_id")
                 );
                 staffList.add(staff);
